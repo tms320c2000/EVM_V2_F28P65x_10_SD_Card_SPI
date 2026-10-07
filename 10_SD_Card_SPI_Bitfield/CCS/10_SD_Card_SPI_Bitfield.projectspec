@@ -1,0 +1,34 @@
+<projectSpec>
+  <project
+        name="10_SD_Card_SPI_Bitfield"
+        device="TMS320F28P650DK9"
+        cgtVersion="22.6.3.LTS"
+        products="C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <!--
+      DriverLib을 전혀 쓰지 않는 자기완결형 프로젝트입니다 (driverlib.lib 없음).
+      11_SCI_to_USB_Bitfield와 같은 device/(common_include, headers_include) 구성을 재사용하고,
+      FatFs(fatfs/)와 명령어 쉘(utils/)은 10_SD_Card_SPI_Driverlib과 같은 소스를 씁니다.
+      FatFs 작업 버퍼(수 KB)가 들어가도록 링커 파일은 .bss/.stack을 넓은 RAM에 배치하는 DriverLib 판과 같은 것을 씁니다.
+    -->
+    <configuration name="CPU1_RAM"
+        compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device/common_include -I${PROJECT_ROOT}/device/headers_include -I${PROJECT_ROOT}/fatfs -I${PROJECT_ROOT}/utils -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections --diag_warning=225 --diag_suppress=10063"
+        linkerBuildOptions="--stack_size=0x800 --entry_point code_start" />
+    <configuration name="CPU1_FLASH"
+        compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device/common_include -I${PROJECT_ROOT}/device/headers_include -I${PROJECT_ROOT}/fatfs -I${PROJECT_ROOT}/utils -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections --define=_FLASH --diag_warning=225 --diag_suppress=10063"
+        linkerBuildOptions="--stack_size=0x800 --entry_point code_start" />
+
+    <file action="copy" path="../device" targetDirectory="" />
+    <file action="copy" path="../fatfs" targetDirectory="" />
+    <file action="copy" path="../utils" targetDirectory="" />
+    <file action="copy" path="../f28p65x_headers_nonBIOS_cpu1.cmd" targetDirectory="" />
+    <file action="copy" path="../28p65x_generic_ram_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../28p65x_generic_flash_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../mmc_F28P65x.c" targetDirectory="" />
+    <file action="copy" path="../10_SD_Card_SPI_Bitfield.c" targetDirectory="" />
+  </project>
+</projectSpec>

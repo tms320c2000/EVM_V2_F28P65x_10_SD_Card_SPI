@@ -1,0 +1,34 @@
+<projectSpec>
+  <project
+        name="10_SD_Card_SPI_Driverlib"
+        device="TMS320F28P650DK9"
+        cgtVersion="22.6.3.LTS"
+        products="C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <!--
+      자기완결형(self-contained) 프로젝트입니다. SysConfig는 쓰지 않습니다.
+      device.h/device.c/driverlib.h/driverlib 헤더 전체/driverlib.lib/fatfs/utils를 전부
+      프로젝트 폴더 안에 복사해 두었으므로, C2000Ware 설치 경로와 무관하게 빌드됩니다.
+      자세한 내용은 이 폴더의 README.md 참고.
+    -->
+    <configuration name="CPU1_RAM"
+        compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT} -I${PROJECT_ROOT}/device -I${PROJECT_ROOT}/device/driverlib -I${PROJECT_ROOT}/fatfs -I${PROJECT_ROOT}/utils -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225 --diag_suppress=10063"
+        linkerBuildOptions="--entry_point code_start --stack_size=0x800 --heap_size=0x800 -i${PROJECT_ROOT}" />
+    <configuration name="CPU1_FLASH"
+        compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT} -I${PROJECT_ROOT}/device -I${PROJECT_ROOT}/device/driverlib -I${PROJECT_ROOT}/fatfs -I${PROJECT_ROOT}/utils --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225 --diag_suppress=10063"
+        linkerBuildOptions="--entry_point code_start --stack_size=0x800 --heap_size=0x800 --define=_FLASH -i${PROJECT_ROOT}" />
+
+    <file action="copy" path="../driverlib.lib" targetDirectory="" applicableConfigurations="CPU1_RAM, CPU1_FLASH" />
+    <file action="copy" path="../28p65x_generic_ram_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../28p65x_generic_flash_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../device" targetDirectory="" />
+    <file action="copy" path="../fatfs" targetDirectory="" />
+    <file action="copy" path="../utils" targetDirectory="" />
+    <file action="copy" path="../mmc_F28P65x.c" targetDirectory="" />
+    <file action="copy" path="../10_SD_Card_SPI_Driverlib.c" targetDirectory="" />
+  </project>
+</projectSpec>
