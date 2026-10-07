@@ -105,3 +105,7 @@ Micro SD/SDHC(4~32GB 권장), **FAT16 또는 FAT32**(exFAT/NTFS 미지원)로 �
 | **FreeRTOS(이 폴더)** | 10_SD_Card_SPI_Freertos | 태스크 3개, 정적 할당 | 20,334 워드 | Flash 16,878 / RAM 4,150 |
 
 링크 맵의 영역별 사용량 합계(워드)입니다. 측정: 2026-10-07, C2000 CGT 25.11.1.LTS(`--opt_level=off`), CCS 빌드와 같은 옵션으로 링크한 맵 기준입니다(비트필드판 RAM 구성은 CCS가 만든 `CPU1_RAM` 맵 18,179워드[sddiag 포함]와 일치함을 확인). FLASH 구성의 Flash는 `FLASH_BANK0`(131,070워드) 대비 비트필드 약 9.9%, DriverLib 약 11.2%, FreeRTOS 약 12.9%입니다. RAM 합계에는 PIE 벡터 테이블·주변장치 프레임 영역(약 480워드)도 들어 있습니다. RAM 구성은 코드까지 RAM에 올라가므로 크고, 스택(0x800)과 DriverLib 판의 힙 예약(0x800)이 포함됩니다.
+
+## 관련 링크
+- 상품 페이지: https://tms320f28x.co.kr/goods/goods_view.php?goodsNo=200903127
+- 게시판 글: https://tms320f28x.co.kr/board/view.php?bdId=tms320f28xevmv2&sno=113

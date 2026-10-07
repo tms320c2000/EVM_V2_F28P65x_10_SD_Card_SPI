@@ -79,6 +79,10 @@ RAM 합계에는 PIE 벡터 테이블·주변장치 프레임 영역(약 480워�
 - **확인 전**: `cat`, `write`, `mkdir`, `rm` 명령, 쓰기 속도, 전원을 껐다 켠 뒤 CPU1_FLASH 단독 실행.
 - 점퍼선이 길어 12.5 MHz에서 오류가 나면 `mmc_F28P65x.c`의 SPI 고속 설정을 낮춰 보세요(각 프로젝트 README 참고).
 
+## 관련 링크
+- 상품 페이지: https://tms320f28x.co.kr/goods/goods_view.php?goodsNo=200903127
+- 게시판 글: https://tms320f28x.co.kr/board/view.php?bdId=tms320f28xevmv2&sno=113
+
 ## 프로세서 모듈
 
 - [TMS320F28P650DK9 모듈(산업용)](https://tms320f28x.co.kr/goods/goods_view.php?goodsNo=200903200)
